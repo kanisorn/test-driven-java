@@ -7,6 +7,7 @@ public class MainClass {
 	public static void main(String[] args) {
 		DuplicateRemover.getUnique(getDuplicateList());
 		DuplicateRemover.getUnique_1(getDuplicateList());
+		DuplicateRemover.getUniqueWithOccurence(getDuplicateList());
 	}
 
 	private static List<String> getDuplicateList() {

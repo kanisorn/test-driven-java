@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /*
@@ -28,7 +30,7 @@ public class DuplicateRemover {
 	 *   Print out the uniqueList.
 	 */
 	public static void getUnique(List<String> duplicateList) {
-		if (duplicateList.size() <= 1) return;
+		if (duplicateList.size() < 1) return;
 		
 		List<String> uniqueList = new ArrayList<String>();
 		uniqueList.add(duplicateList.get(0));
@@ -56,7 +58,7 @@ public class DuplicateRemover {
 	 *   Print out the uniqueList 
 	 */
 	public static void getUnique_1(List<String> duplicateList) {
-		if (duplicateList.size() <= 1) return;
+		if (duplicateList.size() < 1) return;
 		Set<String> duplicateSet = new HashSet<String>(duplicateList); 
 		
 		System.out.println("getUnique_1");
@@ -65,4 +67,29 @@ public class DuplicateRemover {
 		}
 	}
 
+	/*
+	 * 
+	 */
+	public static void getUniqueWithOccurence(List<String> duplicateList) {
+		
+		// Java will automatically autobox your int primitive values to Integer objects.
+		// see also: http://docs.oracle.com/javase/7/docs/technotes/guides/language/autoboxing.html
+		HashMap<String, Integer> uniqueList = new HashMap<String, Integer>();
+
+		for (int i=0; i<duplicateList.size(); i++) {
+			String item = duplicateList.get(i).toString();
+			if (uniqueList.containsKey(item)) {
+				int count = (int)uniqueList.get(item) + 1;
+				uniqueList.replace(item, count);
+			} else {
+				uniqueList.put(duplicateList.get(i).toString(), 1);
+			}
+		}
+		
+		
+		System.out.println("getUniqueWithOccurrence");
+		for (Map.Entry<String, Integer> item : uniqueList.entrySet()) {
+			System.out.println(item.getKey() + " " + item.getValue());
+		}
+	}
 }
